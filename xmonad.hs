@@ -45,9 +45,9 @@ main = do
         , keys = newKeys
         }
 
-myKeys x@(XConfig {XMonad.modMask = modm}) = M.fromList $
+myKeys x@(XConfig {modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), windows W.swapMaster)
-    , ((modm,               xK_Return), spawn $ XMonad.terminal x)
+    , ((modm,               xK_Return), spawn $ terminal x)
     , ((modm,               xK_e     ), spawn "urxvt -e ranger")
     , ((modm,               xK_p     ), spawn myDmenuTitleBar)
     ]
@@ -58,7 +58,7 @@ myKeys x@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- mod-control-[1..9], Copy client to workspace N
     --
     [((m .|. modm, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces x) [xK_1 .. xK_9]
+        | (i, k) <- zip (workspaces x) [xK_1 .. xK_9]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask), (copy, controlMask)]
     ]
 
