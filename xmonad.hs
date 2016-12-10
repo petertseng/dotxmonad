@@ -45,7 +45,7 @@ main = do
         , keys = newKeys
         }
 
-myKeys x@(XConfig {modMask = modm}) = M.fromList $
+myKeys x@XConfig{modMask = modm} = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), windows W.swapMaster)
     , ((modm,               xK_Return), spawn $ terminal x)
     , ((modm,               xK_e     ), spawn "urxvt -e ranger")
