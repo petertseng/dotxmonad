@@ -1,4 +1,5 @@
 import XMonad
+import XMonad.Config (def)
 import XMonad.Actions.CopyWindow (copy)
 import XMonad.Hooks.DynamicLog
   ( dynamicLogWithPP
@@ -33,9 +34,9 @@ myDmenuTitleBar =
 main = do
     home <- getEnv "HOME"
     xmproc <- spawnPipe $ "/usr/bin/xmobar " ++ home ++"/.xmonad/xmobar.hs"
-    xmonad $ defaultConfig
-        { manageHook = manageDocks <+> manageHook defaultConfig
-        , layoutHook = avoidStruts  $  layoutHook defaultConfig
+    xmonad $ def
+        { manageHook = manageDocks <+> manageHook def
+        , layoutHook = avoidStruts  $  layoutHook def
         , logHook = dynamicLogWithPP $ xmobarPP
             { ppOutput = hPutStrLn xmproc
             , ppTitle = xmobarColor "green" "" . shorten 100
@@ -62,4 +63,4 @@ myKeys x@XConfig{modMask = modm} = M.fromList $
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask), (copy, controlMask)]
     ]
 
-newKeys x = M.union (myKeys x) (keys defaultConfig x)
+newKeys x = M.union (myKeys x) (keys def x)
