@@ -1,11 +1,18 @@
 import XMonad
-import XMonad.Actions.CopyWindow
+import XMonad.Actions.CopyWindow (copy)
 import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.ManageDocks
+  ( dynamicLogWithPP
+  , ppOutput
+  , ppTitle
+  , shorten
+  , xmobarColor
+  , xmobarPP
+  )
+import XMonad.Hooks.ManageDocks (avoidStruts, manageDocks)
 import XMonad.Util.Run (spawnPipe)
 import XMonad.Util.EZConfig (additionalKeys)
 import System.Environment (getEnv)
-import System.IO
+import System.IO (hPutStrLn)
 
 import qualified Data.Map as M
 import qualified XMonad.StackSet as W
