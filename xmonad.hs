@@ -12,7 +12,6 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks (avoidStruts, manageDocks)
 import XMonad.Util.Run (spawnPipe)
 import XMonad.Util.EZConfig (additionalKeys)
-import System.Environment (getEnv)
 import System.IO (hPutStrLn)
 
 import qualified Data.Map as M
@@ -32,8 +31,7 @@ myDmenuTitleBar =
     \`"
 
 main = do
-    home <- getEnv "HOME"
-    xmproc <- spawnPipe $ "/usr/bin/xmobar " ++ home ++"/.xmonad/xmobar.hs"
+    xmproc <- spawnPipe "/usr/bin/xmobar $HOME/.xmonad/xmobar.hs"
     xmonad $ def
         { manageHook = manageDocks <+> manageHook def
         , layoutHook = avoidStruts  $  layoutHook def
