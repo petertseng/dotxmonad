@@ -9,7 +9,6 @@ import XMonad.Hooks.DynamicLog
   , xmobarColor
   , xmobarPP
   )
-import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.ManageDocks (avoidStruts, docksEventHook, manageDocks)
 import XMonad.Util.Run (spawnPipe)
 import XMonad.Util.EZConfig (additionalKeys)
@@ -33,7 +32,7 @@ myDmenuTitleBar =
 
 main = do
     xmproc <- spawnPipe "/usr/bin/xmobar $HOME/.xmonad/xmobar.hs"
-    xmonad $ ewmh def
+    xmonad $ def
         { manageHook = manageDocks <+> manageHook def
         , layoutHook = avoidStruts  $  layoutHook def
         , handleEventHook = docksEventHook <+> handleEventHook def
