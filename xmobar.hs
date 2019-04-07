@@ -23,5 +23,5 @@ Config { font = "Droid Sans Fallback Bold 9"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% %memory% %swap% | %uptime% | <fc=#ee9a00>%date% | %utc% | %kor%</fc>"
+       , template = "%StdinReader% }{ %cpu% %memory% %swap% | %uptime% | <fc=#ff0000>STOP EWMH WHEN DONE</fc> | <fc=#ee9a00>%date% | %utc% | %kor%</fc>"
        }

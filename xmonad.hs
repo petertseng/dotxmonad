@@ -9,6 +9,7 @@ import XMonad.Hooks.DynamicLog
   , xmobarColor
   , xmobarPP
   )
+import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.ManageDocks (avoidStruts, docks)
 import XMonad.Util.Run (spawnPipe)
 import XMonad.Util.EZConfig (additionalKeys)
@@ -30,9 +31,14 @@ myDmenuTitleBar =
         \ -sb " ++ selected   ++ "\
     \`"
 
+-- refuse the handleEventHook.
+-- windows should not be able to steal focus.
+myEwmh :: XConfig a -> XConfig a
+myEwmh c = let c' = ewmh c in c { startupHook = startupHook c', logHook = logHook c' }
+
 main = do
     xmproc <- spawnPipe "/usr/bin/xmobar $HOME/.xmonad/xmobar.hs"
-    xmonad $ docks def
+    xmonad $ myEwmh $ docks def
         { modMask = mod4Mask
         , terminal = "urxvt"
         , keys = newKeys
