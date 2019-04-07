@@ -9,6 +9,7 @@ import XMonad.Hooks.DynamicLog
   , xmobarColor
   , xmobarPP
   )
+import XMonad.Hooks.EwmhDesktops (ewmhDesktopsLogHook)
 import XMonad.Hooks.ManageDocks (avoidStruts, docksEventHook, manageDocks)
 import XMonad.Util.Run (spawnPipe)
 import XMonad.Util.EZConfig (additionalKeys)
@@ -30,9 +31,18 @@ myDmenuTitleBar =
         \ -sb " ++ selected   ++ "\
     \`"
 
+-- Lets me get a window list from X,
+-- which I can use in certain automation tasks (currently game-related)
+-- and when streaming
+-- explicitly does not use the eventHook,
+-- because I don't like letting windows steal focus.
+-- http://hackage.haskell.org/package/xmonad-contrib-0.15/docs/src/XMonad.Hooks.EwmhDesktops.html#ewmh
+myEmwh :: XConfig a -> XConfig a
+myEmwh c = c { logHook = mappend ewmhDesktopsLogHook (logHook c) }
+
 main = do
     xmproc <- spawnPipe "/usr/bin/xmobar $HOME/.xmonad/xmobar.hs"
-    xmonad $ def
+    xmonad $ myEmwh def
         { manageHook = manageDocks <+> manageHook def
         , layoutHook = avoidStruts  $  layoutHook def
         , handleEventHook = docksEventHook <+> handleEventHook def
