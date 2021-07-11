@@ -8,7 +8,12 @@ Config { font = "xft:Droid Sans Fallback-9:Bold"
                               , "--normal", "green"
                               , "--high", "red"
                               ] 10
-                    , Run Memory ["-t","Mem: <usedratio>%"] 10
+                    , Run Memory [ "--template", "Mem: <usedratio>%"
+                                 , "--High", "80"
+                                 , "--low", "green"
+                                 , "--normal", "yellow"
+                                 , "--high", "red"
+                                 ] 10
                     , Run Swap [] 10
                     , Run Uptime [] 10
                     , Run Date "%a %Y-%m-%d %H:%M:%S %z" "date" 10
