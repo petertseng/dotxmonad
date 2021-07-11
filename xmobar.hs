@@ -3,7 +3,11 @@ Config { font = "xft:Droid Sans Fallback-9:Bold"
        , fgColor = "grey"
        , position = TopW L 95
        , lowerOnStart = True
-       , commands = [ Run Cpu ["-L", "3", "-H", "50", "--normal", "green", "--high", "red"] 10
+       , commands = [ Run Cpu [ "--Low", "3"
+                              , "--High", "50"
+                              , "--normal", "green"
+                              , "--high", "red"
+                              ] 10
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
                     , Run Swap [] 10
                     , Run Uptime [] 10
