@@ -9,7 +9,7 @@ import XMonad.Hooks.DynamicLog
   , xmobarColor
   , xmobarPP
   )
-import XMonad.Hooks.ManageDocks (avoidStruts, docksEventHook, manageDocks)
+import XMonad.Hooks.ManageDocks (avoidStruts, docks)
 import XMonad.Util.Run (spawnPipe)
 import XMonad.Util.EZConfig (additionalKeys)
 import System.IO (hPutStrLn)
@@ -32,13 +32,11 @@ myDmenuTitleBar =
 
 main = do
     xmproc <- spawnPipe "/usr/bin/xmobar $HOME/.xmonad/xmobar.hs"
-    xmonad $ def
+    xmonad $ docks def
         { modMask = mod4Mask
         , terminal = "urxvt"
         , keys = newKeys
-        , manageHook = mappend manageDocks (manageHook def)
         , layoutHook = avoidStruts $ layoutHook def
-        , handleEventHook = mappend docksEventHook (handleEventHook def)
         , logHook = dynamicLogWithPP $ xmobarPP
             { ppOutput = hPutStrLn xmproc
             , ppTitle = xmobarColor "green" "" . shorten 100
