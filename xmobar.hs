@@ -1,4 +1,4 @@
-Config { font = "xft:Droid Sans Fallback-9:Bold"
+Config { font = "Droid Sans Fallback Bold 9"
        , bgColor = "black"
        , fgColor = "grey"
        , position = TopW L 95
