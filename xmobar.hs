@@ -5,12 +5,12 @@ Config { font = "Droid Sans Fallback Bold 9"
        , lowerOnStart = True
        , commands = [ Run Cpu [ "--Low", "3"
                               , "--High", "50"
-                              , "--normal", "green"
+                              , "--normal", "#00ff00"
                               , "--high", "red"
                               ] 10
                     , Run Memory [ "--template", "Mem: <usedratio>%"
                                  , "--High", "80"
-                                 , "--low", "green"
+                                 , "--low", "#00ff00"
                                  , "--normal", "yellow"
                                  , "--high", "red"
                                  ] 10

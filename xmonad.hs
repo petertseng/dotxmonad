@@ -39,7 +39,7 @@ main = do
         , layoutHook = avoidStruts $ layoutHook def
         , logHook = dynamicLogWithPP $ xmobarPP
             { ppOutput = hPutStrLn xmproc
-            , ppTitle = xmobarColor "green" "" . shorten 100
+            , ppTitle = xmobarColor "#00ff00" "" . shorten 100
             }
         }
 
